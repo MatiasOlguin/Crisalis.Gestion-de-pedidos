@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+  <h1 class="text-dark text-center" th:text="${titulo}"></h1>
+
+  <ul class="list-group">
+    <li class="list-group-item active" th:text="${persona.nombre}"></li>
+    <li class="list-group-item" th:text="${persona.apellido}"></li>
+    <li class="list-group-item" th:text="${persona.dni}"></li>
+    <li class="list-group-item" th:text="${persona.createAt}"></li>
+  </ul>
+
+  <div th:if="${persona.cantidadPedidos == 0}"
+       class="alert alert-info my-4"
+       th:text="'No hay pedidos asignados para ' + ${persona.nombre} + ' ' + ${persona.apellido}"></div>
+
+  <table th:if="${persona.cantidadPedidos != 0}" class="table table-bordered table-striped my-4">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Creado</th>
+      <th>Estado</th>
+      <th>Monto Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pedido: ${persona.pedidos}">
+      <td th:text="${pedido.id}"></td>
+      <td th:text="${pedido.createAt}"></td>
+      <td th:text="${pedido.estado}"></td>
+      <td th:text="${pedido.montoTotal}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

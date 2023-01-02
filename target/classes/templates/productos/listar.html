@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+  <h1 class="text-dark text-center" th:text="${titulo}"></h1>
+
+  <p><a th:href="@{/productos/form}" class="btn btn-success btn-xs">Crear producto</a></p>
+  <table class="table table-striped text-center">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Descripcion</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Monto Base</th>
+      <th>Cantidad</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="producto: ${productos}">
+      <td th:text="${producto.id}"></td>
+      <td th:text="${producto.descripcion}"></td>
+      <td th:text="${producto.marca}"></td>
+      <td th:text="${producto.modelo}"></td>
+      <td th:text="'$ ' + ${producto.montoBase}"></td>
+      <td th:text="${producto.cantidad}"></td>
+      <td><a class="btn btn-primary btn-xs" th:href="@{/productos/form/} + ${producto.id}" th:text="'Editar'"></a></td>
+      <td><a class="btn btn-danger btn-xs" th:href="@{/productos/eliminar/} + ${producto.id}" th:text="'Eliminar'"></a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

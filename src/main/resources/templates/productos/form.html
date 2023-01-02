@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+  <h1 th:text="${titulo}"></h1>
+
+  <form th:action="@{/productos/form}" th:object="${producto}"
+        method="post">
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Descripcion</label>
+      <div class=col-sm-6>
+        <input type="text" th:field="*{descripcion}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Marca</label>
+      <div class=col-sm-6>
+        <input type="text" th:field="*{marca}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Modelo</label>
+      <div class=col-sm-6>
+        <input type="text" th:field="*{modelo}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Monto Base</label>
+      <div class=col-sm-6>
+        <input type="text" th:field="*{montoBase}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label">Cantidad</label>
+      <div class=col-sm-6>
+        <input type="text" th:field="*{cantidad}" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class=col-sm-6>
+        <input type="submit" th:value="${botonAccion}"  class="btn btn-primary" />
+      </div>
+    </div>
+  </form>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

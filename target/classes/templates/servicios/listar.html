@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container">
+  <h1 class="text-dark text-center" th:text="${titulo}"></h1>
+
+  <p><a th:href="@{/servicios/form}" class="btn btn-success btn-xs">Crear Servicio</a></p>
+  <table class="table table-striped text-center">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>Descripcion</th>
+      <th>Tipo</th>
+      <th>Monto Base</th>
+      <th>Especial</th>
+      <th>Cargo por Soporte</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="servicio: ${servicios}">
+      <td th:text="${servicio.id}"></td>
+      <td th:text="${servicio.descripcion}"></td>
+      <td th:text="${servicio.tipo}"></td>
+      <td th:text="'$ ' + ${servicio.montoBase}"></td>
+      <td th:text="${servicio.cargoSoporte} != null ? 'Si' : 'No'"></td>
+      <td th:text="${servicio.cargoSoporte} != null ? '$ ' + ${servicio.cargoSoporte} : 'No aplica'"></td>
+      <td><a class="btn btn-primary btn-xs" th:href="@{/servicios/form/} + ${servicio.id}" th:text="'Editar'"></a></td>
+      <td><a class="btn btn-danger btn-xs" th:href="@{/servicios/eliminar/} + ${servicio.id}" th:text="'Eliminar'"></a></td>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
